@@ -25,6 +25,10 @@ class jsSubmenu {
 	}
 
     public function add_options_page() {
+	$user = wp_get_current_user();
+        if ( !in_array( 'administrator', (array) $user->roles ) ) {
+       	    return true;
+        }
         if($this->acf_active()){
             acf_add_options_sub_page(
                 [
